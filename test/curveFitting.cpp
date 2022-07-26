@@ -74,7 +74,7 @@ int main(int argc, char **argv)
     double a = 6, b = 20, c = 5;
     int N = 100;
     // 噪声水平
-    double w_sigma = 1;
+    double w_sigma = 2;
     default_random_engine generator;
     normal_distribution<double> noise(0., w_sigma);
 
@@ -82,6 +82,9 @@ int main(int argc, char **argv)
     solver.setEstimationPrecision(1e-6);
     solver.setMaximumIterations(30);
     solver.setVerbose(0);
+
+    
+
 
     // generate random observations
     for (int i = 0; i < N; ++i)
@@ -94,6 +97,12 @@ int main(int argc, char **argv)
         // double y = a * x * x + b * x + c + n;
         solver.addObservation(x, y);
     }
+
+    // 设置信息矩阵
+    solver.information_.resize(solver.observations_.size(),solver.observations_.size());
+    solver.information_.setIdentity();
+    solver.information_ *= (1/(w_sigma * w_sigma));
+
 
     TicToc t_solve;
     // solve by gauss-newton

@@ -47,7 +47,7 @@ namespace nlssolver
 
         virtual void dataLogging()
         {
-            ofstream foutC("../scripts/CurveFitting_data.txt"
+            ofstream foutC("/home/divenire/0_myWorkSpace/NonLinearSolver/scripts/CurveFitting_data.txt"
                            // , ios::app
             );
 
@@ -74,12 +74,13 @@ namespace nlssolver
                 auto jacobian_i = jacobian_.row(i);
 
                 sigma_y(i) = jacobian_i * covar_p * jacobian_i.transpose();
-                sigma_y(i)  = sqrt(sigma_y(i) );
+                sigma_y(i) = sqrt(sigma_y(i));
                 // x y sigma_y
                 foutC << observations_[i](0) << " " << observations_[i](1) << " " << sigma_y(i) << " " << endl;
 
                 // cout << "sigma_y" << i << ":" << sigma_y(i) << endl;
             }
+            cout << "sigma_y1:" << sigma_y(0) << endl;
         }
 
         // Set maximum numbers of iteration
@@ -129,8 +130,10 @@ namespace nlssolver
         // Hessian = Jt J   g = -Jt e
         inline void computeHessianAndg()
         {
-            hessian_ = jacobian_.transpose() * jacobian_;
-            g_ = -jacobian_.transpose() * error_;
+            hessian_ = jacobian_.transpose() * information_ * jacobian_;
+            g_ = -jacobian_.transpose() * information_ * error_;
+            // hessian_ = jacobian_.transpose() * jacobian_;
+            // g_ = -jacobian_.transpose() * error_;
         }
 
         // Solve linear system Hx = g
@@ -175,6 +178,9 @@ namespace nlssolver
 
         // squared estimation error
         double squaredError_;
+
+        // information
+        Eigen::MatrixXd information_;
 
         // delta x
         Eigen::Vector3d delta_x_;
