@@ -1,12 +1,29 @@
 # NLSSolver
 
-参考《Methods for Non-Linear Least Squares Problems (2nd ed.)》
-实现了用GN,LM,Dog-Leg法曲线拟合
+一个非常简单的非线性优化求解器.
 
-以函数$y = exp(*x^2 - 2*x +3)$为例子,结果如下所示:
+实现参考资料
+- Methods for Non-Linear Least Squares Problems (2nd ed.)
+- The Levenberg-Marquardt algorithm for nonlinear least squares curve-ﬁtting problems
+
+包含如下求解方法
+- 高斯牛顿法
+- LM法
+- Dog-Leg法
+
+依赖
+- C++11
+- Eigen 
 
 
+以曲线拟合$y = exp(*x^2 - 2*x +3)$为例子,结果如下所示:
 
-![](README_md_files/53ca66a0-0c94-11ed-9b0f-9952adc6a899.jpeg?v=1&type=image)
 
+ ![image](img/1.png)
+
+|     | param_init   | param_true   | param_esti | sigama_p |
+| --- | ------------ | ------------ | ------------ | ---------- |
+| a | 10.0           | 6            |       6.00206       |     0.868862       |
+| b | 50.0           | 20           |       19.151       |   4.03159         |
+| c | 5.7            | 1            |       4.99278       |   0.0199173         |
 
