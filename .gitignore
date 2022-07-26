@@ -1,11 +1,13 @@
 # build
 build/
 
+bin/
+
+
 .vscode/
 .idea
 
 # C++
-
 
 
 # Prerequisites
