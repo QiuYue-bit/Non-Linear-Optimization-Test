@@ -1,3 +1,4 @@
+from cProfile import label
 from matplotlib import markers
 import matplotlib.pyplot as plt
 import numpy as np
@@ -42,17 +43,18 @@ for line in open('CurveFitting_data.txt','r'):
     
 
 y_up = np.array(y_esti) + 3*np.array(sigma_y)
+y_down = np.array(y_esti) - 3*np.array(sigma_y)
 
 plt.figure(1)
-plt.scatter(x,y,s=3.,color = (0,1,0))
-
-plt.scatter(x,y_up,s=1.,color = (0,0,0))
-plt.plot(x,y_esti)
-
-
+plt.scatter(x,y,s=3.,color = (0,1,0),label = "obs data")
+plt.scatter(x,y_up,s=1.,color = (0,0,0),label = "99 % confidence")
+plt.scatter(x,y_down,s=1.,color = (0,0,0))
+plt.plot(x,y_esti,label = "estimate  curve")
+plt.xlabel("x")
+plt.ylabel("y")
 
 plt.title("y=a*exp(-x/b) + 6* sin(x/c)") 
-plt.legend(['data','esti','true'],loc = "upper right")
+plt.legend(loc = "upper right")
 
 # LM
 iter = []
