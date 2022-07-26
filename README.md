@@ -1,4 +1,4 @@
-# NLSSolver
+# Non-Linear Optimization Study
 
 一个非常简单的非线性优化求解器.
 
@@ -14,6 +14,9 @@
 依赖
 - C++11
 - Eigen 
+
+待完善
+- [ ] 加入外点和鲁棒核函数测试
 
 
 以曲线拟合$y = exp(*x^2 - 2*x +3)$为例子,结果如下所示:
