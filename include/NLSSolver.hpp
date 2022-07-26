@@ -185,6 +185,8 @@ namespace nlssolver
         // delta x
         Eigen::Vector3d delta_x_;
 
+        Eigen::Matrix3d information_ = Eigen::Matrix3d::Identity();
+
         // observations
         std::vector<Eigen::Vector2d, Eigen::aligned_allocator<Eigen::Vector2d>> observations_;
 

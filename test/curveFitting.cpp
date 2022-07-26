@@ -82,6 +82,7 @@ int main(int argc, char **argv)
     solver.setEstimationPrecision(1e-6);
     solver.setMaximumIterations(30);
     solver.setVerbose(0);
+    // solver.information_ *= (w_sigma * w_sigma);
 
     
 
