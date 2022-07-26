@@ -129,8 +129,8 @@ namespace nlssolver
         // Hessian = Jt J   g = -Jt e
         inline void computeHessianAndg()
         {
-            hessian_ = jacobian_.transpose() * jacobian_;
-            g_ = -jacobian_.transpose() * error_;
+            hessian_ = jacobian_.transpose() * information_ * jacobian_;
+            g_ = -jacobian_.transpose() *information_* error_;
         }
 
         // Solve linear system Hx = g
@@ -178,6 +178,8 @@ namespace nlssolver
 
         // delta x
         Eigen::Vector3d delta_x_;
+
+        Eigen::Matrix3d information_ = Eigen::Matrix3d::Identity();
 
         // observations
         std::vector<Eigen::Vector2d, Eigen::aligned_allocator<Eigen::Vector2d>> observations_;

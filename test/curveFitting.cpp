@@ -74,7 +74,7 @@ int main(int argc, char **argv)
     double a = 6, b = 20, c = 5;
     int N = 100;
     // 噪声水平
-    double w_sigma = 1;
+    double w_sigma = 2;
     default_random_engine generator;
     normal_distribution<double> noise(0., w_sigma);
 
@@ -82,6 +82,7 @@ int main(int argc, char **argv)
     solver.setEstimationPrecision(1e-6);
     solver.setMaximumIterations(30);
     solver.setVerbose(0);
+    // solver.information_ *= (w_sigma * w_sigma);
 
     // generate random observations
     for (int i = 0; i < N; ++i)
