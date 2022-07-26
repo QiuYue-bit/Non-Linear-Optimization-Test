@@ -84,6 +84,9 @@ int main(int argc, char **argv)
     solver.setVerbose(0);
     // solver.information_ *= (w_sigma * w_sigma);
 
+    
+
+
     // generate random observations
     for (int i = 0; i < N; ++i)
     {
@@ -95,6 +98,12 @@ int main(int argc, char **argv)
         // double y = a * x * x + b * x + c + n;
         solver.addObservation(x, y);
     }
+
+    // 设置信息矩阵
+    solver.information_.resize(solver.observations_.size(),solver.observations_.size());
+    solver.information_.setIdentity();
+    solver.information_ *= (1/(w_sigma * w_sigma));
+
 
     TicToc t_solve;
     // solve by gauss-newton

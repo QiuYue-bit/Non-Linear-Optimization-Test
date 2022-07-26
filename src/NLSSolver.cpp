@@ -63,7 +63,7 @@ namespace nlssolver
         int inner_iterations = 10;
         int inner_iter;
 
-        ofstream foutC("../scripts/LM.txt"
+        ofstream foutC("/home/divenire/0_myWorkSpace/NonLinearSolver/scripts/LM.txt"
                        // , ios::app
         );
 
@@ -186,7 +186,7 @@ namespace nlssolver
 
         double last_error = 0;
 
-        ofstream foutC("../scripts/DogLeg.txt"
+        ofstream foutC("/home/divenire/0_myWorkSpace/NonLinearSolver/scripts/DogLeg.txt"
                        // , ios::app
         );
 
